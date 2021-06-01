@@ -1,4 +1,4 @@
-import React,{useState , useRef} from 'react'
+import React,{useState , useRef,useEffect} from 'react'
 import './style.css'
 import Todo from './Todo'
 let idVal = 1;
@@ -7,6 +7,14 @@ const App = ()=>{
     const [taskName,setTaskName] = useState('')
     const containerRef = useRef()
     const inputRef = useRef()
+    const countBar = useRef()
+    useEffect(() => {
+        let doneCount = 0;
+        list.forEach((item)=>{
+            doneCount += item.done
+        })
+        countBar.current.style.opacity = doneCount/list.length+0.3
+    }, [list])
     const handleDelete = (itemId)=>{
             const newList = list.filter((item)=>{
                 return item.id!=itemId
@@ -47,7 +55,7 @@ const App = ()=>{
     return (
         <>
         <nav className="navbar navbar-default resp leftFloat">
-            <a className="navbar-brand">Todo List</a>
+            <a className="navbar-brand">Todo List <span ref={countBar} class="badge" style={{color:'white',backgroundColor:'green',opacity:'0.5'}}>{list.length}</span></a>
             <div className="add-container" ref={containerRef}>
                 <input ref={inputRef} type="text" onChange={handleChange} value={taskName}/>
                 <button onClick={handleAdd}>Add</button>
