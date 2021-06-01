@@ -1,0 +1,25 @@
+.resp{
+    display: flex;
+    align-items: center;
+    align-content:center;
+}
+.leftFloat{
+    display: flex;
+    justify-content: space-between;
+}
+.add-container{
+    display: flex;
+    justify-content: center;
+    background-color: #77cf44;
+    padding: 5px 10px 5px 10px;
+    border-radius: 10px;
+}
+.add-container > input{
+    border: none;
+    color: white;
+    background-color: #77cf44;
+    margin-right:6px;
+}
+.add-container >input::placeholder{
+    color: white;
+}
